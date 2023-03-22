@@ -1,0 +1,10 @@
+# Enable Blades
+wc_weaponry.blades (Blades) bool true
+
+# Enable Spears
+wc_weaponry.spears (Spears) bool false
+
+# Enable Macuahuitl
+wc_weaponry.azteca (Macuahuitl) bool true
+
+
