@@ -4,12 +4,12 @@ local minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 local modname = minetest.get_current_modname()
 ------------------------------------------------------------------------
-local handle = modname.. "_spear_handle.png"
+local handle = modname.. "_long_handle.png"
 local tip = modname.. "_spear_tip.png"
 --<>-----<> ================================================ <>-----<>--
 -- ================================================================== --
 SPEARS_THROW_SPEED = 22
-SPEARS_V_ZERO = {x = 0, y = 0, z = 0}
+SPEARS_V_ZERO = {x = 0, y = 2, z = 0}
 SPEARS_DRAG_COEFF = 0.1
 SPEARS_NODE_UNKNOWN = nil
 SPEARS_NODE_THROUGH = 0
@@ -194,7 +194,7 @@ function register_spear(spear_type, desc, base_damage, toughness, material)
 		description = desc .. " spear",
 		wield_image = handle.. "^" ..tip,
 		inventory_image = handle.. "^" ..tip,
-		wield_scale= {x = 1, y = 1, z = 1},
+		wield_scale= {x = 1, y = 4, z = 1},
 		on_secondary_use = function(itemstack, user, pointed_thing)
 			spears_throw(itemstack, user, pointed_thing)
 				itemstack:take_item()

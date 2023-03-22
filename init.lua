@@ -9,7 +9,7 @@ if minetest.settings:get_bool(modname.. ".blades", true) then
 	include("blades")
 end
 
-if minetest.settings:get_bool(modname.. ".spears", true) then
+if minetest.settings:get_bool(modname.. ".spears", false) then
 	include("spears")
 end
 

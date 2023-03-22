@@ -6,24 +6,49 @@ local modname = minetest.get_current_modname()
 ------------------------------------------------------------------------
 local handle = "nc_lode_tool_handle.png"
 local blade = modname.. "_blade.png"
+local knife = modname.. "_knife.png"
 --<>-----<> ================================================ <>-----<>--
 -- ================================================================== --
  local function register_blade(temper, desc, str, dur, mat)
-	minetest.register_tool(modname .. ":blade_" ..temper, {
+ --<>----------------------------------------------------------------<>--
+ 	minetest.register_craftitem(modname .. ":blade_" ..temper, {
 		description = desc.. " Blade",
-		inventory_image = handle.. "^(" ..mat.. "^[mask:" ..blade.. ")",
+		inventory_image = mat.. "^[mask:" ..blade,
+		groups = {blade = 1, lodey = 1},
+		stack_max = 1,
+		sounds = nodecore.sounds("nc_optics_glassy")
+	})
+--<>----------------------------------------------------------------<>--
+	minetest.register_tool(modname .. ":knife_" ..temper, {
+		description = desc.. " Knife",
+		inventory_image = handle.. "^(" ..mat.. "^[mask:" ..knife.. ")",
 		groups = {
 			flammable = 2,
-			blade = 1,
+			knife = 1,
+			lodey = 1
 		},
 		tool_capabilities = nodecore.toolcaps({
 			snappy = str,
 			fleshy = str,
 			uses = dur,
 		}),
-		tool_wears_to = "nc_lode:rod_" ..temper,
+		tool_wears_to = "nc_lode:prill_" ..temper,
 		sounds = nodecore.sounds("nc_lode_" ..temper)
 	})
+--<>-----<> ================================================ <>-----<>--
+nodecore.register_craft({
+	label = "assemble " ..temper.. " knife",
+	normal = {y = 1},
+	indexkeys = {modname .. ":blade_" ..temper},
+	nodes = {
+		{match = modname .. ":blade_" ..temper, replace = "air"},
+		{y = -1, match = "nc_tree:stick", replace = "air"}
+	},
+	items = {
+			{name = modname .. ":knife_" ..temper}
+		}
+})
+--<>----------------------------------------------------------------<>--
 end
 -- ================================================================== --
 --<>-----<> ================================================ <>-----<>--
